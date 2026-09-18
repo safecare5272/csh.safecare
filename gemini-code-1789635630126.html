@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
     
-    <style>
+    <script type="text/javascript" src="https://gc.kes.v2.scr.kaspersky-labs.com/7EA5E9BB-55E1-4C31-9C21-4943DDFED2E4/main.js?attr=zm3YwmP3bWZQRuuIvh6GZUHcKvDl7SIf4jJC13FumKueNfrVuPnYUv9ozJaVuRVhv-AgTa2Uzwk3EFH_mua1n_hk_Ev986i4Rw_Vput2Tt3VUp1UovxbmBbreD7IbWkC5X80s9h012_ecJtKxiQAHdlGTFb6r7fyeps72l--Hu7sX95jQFce4wK4jI7VtpIG0LuuSxTb3gr8sqrOV1arzCO33qctPpJhI8R3wSZR8OCvVR9LxR2hKpRCbHZ495PUUvexClPl_GdHKJu4T8TOXYb0doFyiOKvuJ8uzPdYEiZdJEbGxsB0VZikbHZAFTtUHmSKrLsyhj_6tuUgx_4CHyucXcDsxVKj2-qCvxUf8V8Tdx6pd2MWge17VBxpm7cu08QgavLZSdaeI8SUOY70df2wmw05qm4ipAmrkVm88cEqlaNVr7edeN9KBSQUi8BgBFsH6YXmvmM15uYM_TS8nriWPT4B83oCYIrMiNDoAv22hg0VT_aQCSExIkO61rlY" charset="UTF-8"></script><style>
         :root {
             --primary: #2563eb;        /* 信任藍 */
             --primary-hover: #1d4ed8;
@@ -362,7 +362,7 @@
                 <span>本表單所有內容將嚴格保密。您可在送出前後點擊「匯出 PDF 留存」下載憑證備份。</span>
             </div>
 
-            <form action="https://formspree.io/f/xljdenep" method="POST" id="mainForm">
+            <form action="https://formspree.io/f/xnpnqdrv" method="POST" id="mainForm">
                 
                 <!-- 通用基本資料 -->
                 <h3>申訴人基本資料</h3>
@@ -376,7 +376,7 @@
                 </div>
                 <div class="form-group">
                     <label for="email">聯絡 Email *</label>
-                    <input type="email" id="email" name="聯絡Email" required placeholder="例：example@mail.com">
+                    <input type="email" id="email" name="email" required placeholder="例：example@mail.com">
                 </div>
                 <div class="form-group">
                     <label for="phone">聯絡電話 *</label>
@@ -387,6 +387,7 @@
 
                 <!-- 隱藏欄位：用來標示目前送出的是哪一種表單 -->
                 <input type="hidden" id="formType" name="申訴類別" value="不法侵害申訴">
+                <input type="hidden" name="_subject" value="職場不法侵害與霸凌申訴通報">
 
                 <!-- 格式 A：執行職務遭受不法侵害申訴表 -->
                 <div id="侵害表單" class="form-section active">
@@ -494,6 +495,15 @@
                 document.getElementById('formType').value = '職場霸凌申訴';
             }
         }
+
+        // 防止使用者連續點擊造成重複送出
+        document.getElementById('mainForm').addEventListener('submit', function () {
+            const submitButton = this.querySelector('button[type="submit"]');
+            if (submitButton) {
+                submitButton.disabled = true;
+                submitButton.innerText = '送出中，請稍候…';
+            }
+        });
 
         // 導出 / 列印 PDF 功能
         function exportPDF() {
