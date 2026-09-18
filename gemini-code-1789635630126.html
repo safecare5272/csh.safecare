@@ -1,518 +1,326 @@
 <!DOCTYPE html>
 <html lang="zh-TW">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>職場不法侵害與霸凌申訴通報網</title>
-    <!-- 引入 Google 字型 Inter & Noto Sans TC -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
-    
-    <script type="text/javascript" src="https://gc.kes.v2.scr.kaspersky-labs.com/7EA5E9BB-55E1-4C31-9C21-4943DDFED2E4/main.js?attr=zm3YwmP3bWZQRuuIvh6GZUHcKvDl7SIf4jJC13FumKueNfrVuPnYUv9ozJaVuRVhv-AgTa2Uzwk3EFH_mua1n_hk_Ev986i4Rw_Vput2Tt3VUp1UovxbmBbreD7IbWkC5X80s9h012_ecJtKxiQAHdlGTFb6r7fyeps72l--Hu7sX95jQFce4wK4jI7VtpIG0LuuSxTb3gr8sqrOV1arzCO33qctPpJhI8R3wSZR8OCvVR9LxR2hKpRCbHZ495PUUvexClPl_GdHKJu4T8TOXYb0doFyiOKvuJ8uzPdYEiZdJEbGxsB0VZikbHZAFTtUHmSKrLsyhj_6tuUgx_4CHyucXcDsxVKj2-qCvxUf8V8Tdx6pd2MWge17VBxpm7cu08QgavLZSdaeI8SUOY70df2wmw05qm4ipAmrkVm88cEqlaNVr7edeN9KBSQUi8BgBFsH6YXmvmM15uYM_TS8nriWPT4B83oCYIrMiNDoAv22hg0VT_aQCSExIkO61rlY" charset="UTF-8"></script><style>
-        :root {
-            --primary: #2563eb;        /* 信任藍 */
-            --primary-hover: #1d4ed8;
-            --bg-color: #f8fafc;       /* 柔和淺灰藍背景 */
-            --card-bg: #ffffff;
-            --text-main: #0f172a;      /* 深深灰字體，非純黑 */
-            --text-muted: #64748b;
-            --border-color: #e2e8f0;
-            --accent-red: #ef4444;     /* 警告與警語色 */
-            --accent-green: #0d9488;   /* 匯出按鈕色 */
-            --accent-green-hover: #0f766e;
-            --radius-md: 12px;
-            --radius-sm: 8px;
-            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-        }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        body {
-            font-family: 'Inter', 'Noto Sans TC', -apple-system, BlinkMacSystemFont, sans-serif;
-            line-height: 1.6;
-            color: var(--text-main);
-            background-color: var(--bg-color);
-            padding-bottom: 3rem;
-        }
-
-        /* 頁首設計 */
-        header {
-            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
-            color: white;
-            padding: 3.5rem 1.5rem 4rem 1.5rem;
-            text-align: center;
-            position: relative;
-        }
-
-        header h1 {
-            font-size: 2rem;
-            font-weight: 700;
-            letter-spacing: -0.025em;
-            margin-bottom: 0.5rem;
-        }
-
-        header p {
-            color: #94a3b8;
-            font-size: 1.05rem;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .container {
-            max-width: 760px;
-            margin: -2rem auto 0 auto;
-            padding: 0 1rem;
-            position: relative;
-            z-index: 10;
-        }
-
-        .card {
-            background: var(--card-bg);
-            border-radius: var(--radius-md);
-            box-shadow: var(--shadow-lg);
-            border: 1px solid var(--border-color);
-            padding: 2.5rem;
-        }
-
-        /* 頁籤切換設計 */
-        .tab-buttons {
-            display: flex;
-            background-color: #f1f5f9;
-            padding: 4px;
-            border-radius: var(--radius-sm);
-            margin-bottom: 2rem;
-            gap: 4px;
-        }
-
-        .tab-btn {
-            flex: 1;
-            padding: 0.85rem 1rem;
-            font-size: 1rem;
-            font-weight: 600;
-            color: var(--text-muted);
-            background: transparent;
-            border: none;
-            border-radius: calc(var(--radius-sm) - 2px);
-            cursor: pointer;
-            transition: all 0.2s ease;
-        }
-
-        .tab-btn.active {
-            background-color: white;
-            color: var(--primary);
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-        }
-
-        /* 保密提示方塊 */
-        .notice-box {
-            background-color: #f0fdf4;
-            border: 1px solid #bbf7d0;
-            color: #166534;
-            padding: 0.85rem 1.25rem;
-            border-radius: var(--radius-sm);
-            font-size: 0.9rem;
-            margin-bottom: 2rem;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        /* 表單區域 */
-        h3 {
-            font-size: 1.2rem;
-            font-weight: 700;
-            color: #1e293b;
-            margin-bottom: 1.25rem;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        h3::before {
-            content: '';
-            display: inline-block;
-            width: 4px;
-            height: 18px;
-            background-color: var(--primary);
-            border-radius: 2px;
-        }
-
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-
-        .form-group label {
-            display: block;
-            font-size: 0.95rem;
-            font-weight: 600;
-            color: #334155;
-            margin-bottom: 0.5rem;
-        }
-
-        .form-group input[type="text"],
-        .form-group input[type="email"],
-        .form-group input[type="tel"],
-        .form-group select,
-        .form-group textarea {
-            width: 100%;
-            padding: 0.75rem 1rem;
-            border: 1px solid var(--border-color);
-            border-radius: var(--radius-sm);
-            font-size: 0.95rem;
-            color: var(--text-main);
-            background-color: #f8fafc;
-            transition: all 0.2s ease;
-        }
-
-        .form-group input:focus,
-        .form-group select:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: var(--primary);
-            background-color: #ffffff;
-            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
-        }
-
-        .form-group textarea {
-            resize: vertical;
-            min-height: 110px;
-        }
-
-        /* Checkbox 樣式優化 */
-        .checkbox-group {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 10px;
-            background: #f8fafc;
-            padding: 1rem;
-            border-radius: var(--radius-sm);
-            border: 1px solid var(--border-color);
-        }
-
-        .checkbox-group label {
-            font-weight: 400;
-            font-size: 0.9rem;
-            color: #475569;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            cursor: pointer;
-            margin: 0;
-        }
-
-        .checkbox-group input[type="checkbox"] {
-            width: 16px;
-            height: 16px;
-            accent-color: var(--primary);
-            cursor: pointer;
-        }
-
-        /* 分隔線 */
-        hr {
-            border: none;
-            border-top: 1px dashed var(--border-color);
-            margin: 2rem 0;
-        }
-
-        /* 按鈕區塊 */
-        .btn-group {
-            display: flex;
-            gap: 12px;
-            margin-top: 2rem;
-        }
-
-        .submit-btn, .export-btn {
-            padding: 0.9rem 1.5rem;
-            font-size: 1rem;
-            font-weight: 600;
-            border-radius: var(--radius-sm);
-            border: none;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-        }
-
-        .submit-btn {
-            flex: 2;
-            background-color: var(--primary);
-            color: white;
-            box-shadow: var(--shadow-md);
-        }
-
-        .submit-btn:hover {
-            background-color: var(--primary-hover);
-            transform: translateY(-1px);
-        }
-
-        .export-btn {
-            flex: 1;
-            background-color: #ffffff;
-            color: #334155;
-            border: 1px solid var(--border-color);
-        }
-
-        .export-btn:hover {
-            background-color: #f1f5f9;
-            color: var(--text-main);
-        }
-
-        .form-section {
-            display: none;
-        }
-
-        .form-section.active {
-            display: block;
-        }
-
-        footer {
-            text-align: center;
-            padding: 2.5rem 1rem 1rem 1rem;
-            color: var(--text-muted);
-            font-size: 0.85rem;
-        }
-
-        /* -------------------------------------------------- */
-        /* 列印 / PDF 導出時的專用樣式（只在導出 PDF 時作用） */
-        /* -------------------------------------------------- */
-        @media print {
-            body {
-                background-color: white;
-            }
-            header, nav, footer, .tab-buttons, .btn-group, .notice-box, .no-print {
-                display: none !important;
-            }
-            .container {
-                width: 100%;
-                max-width: 100%;
-                margin: 0;
-                padding: 0;
-            }
-            .card {
-                box-shadow: none;
-                padding: 0;
-                border: none;
-            }
-            .print-header {
-                display: block !important;
-                text-align: center;
-                border-bottom: 2px solid #000;
-                padding-bottom: 15px;
-                margin-bottom: 25px;
-            }
-            .print-header h1 {
-                margin: 0;
-                font-size: 18pt;
-                color: #000;
-            }
-            .print-header p {
-                margin: 5px 0 0 0;
-                font-size: 10pt;
-                color: #444;
-            }
-            input, select, textarea {
-                border: none !important;
-                background: transparent !important;
-                padding: 0 !important;
-                font-size: 11pt !important;
-            }
-            textarea {
-                height: auto !important;
-            }
-        }
-
-        .print-header {
-            display: none;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>職場不法侵害與霸凌申訴通報網</title>
+<style>
+:root{
+  --primary:#2563eb;--primary-hover:#1d4ed8;--bg-color:#f8fafc;
+  --card-bg:#fff;--text-main:#0f172a;--text-muted:#64748b;
+  --border-color:#e2e8f0;--accent-green:#0d9488;--accent-red:#dc2626;
+  --radius-md:12px;--radius-sm:8px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"Microsoft JhengHei","Noto Sans TC",Arial,sans-serif;line-height:1.6;color:var(--text-main);background:var(--bg-color);padding-bottom:3rem}
+header{background:linear-gradient(135deg,#1e293b 0%,#0f172a 100%);color:#fff;padding:3.5rem 1.5rem 4rem;text-align:center}
+header h1{font-size:2rem;font-weight:700;margin-bottom:.5rem}
+header p{color:#cbd5e1;font-size:1.05rem}
+.container{max-width:760px;margin:-2rem auto 0;padding:0 1rem;position:relative;z-index:10}
+.card{background:var(--card-bg);border-radius:var(--radius-md);box-shadow:0 10px 15px -3px rgb(0 0 0/.1),0 4px 6px -4px rgb(0 0 0/.1);border:1px solid var(--border-color);padding:2.5rem}
+.tab-buttons{display:flex;background:#f1f5f9;padding:4px;border-radius:var(--radius-sm);margin-bottom:2rem;gap:4px}
+.tab-btn{flex:1;padding:.85rem 1rem;font-size:1rem;font-weight:600;color:var(--text-muted);background:transparent;border:0;border-radius:6px;cursor:pointer}
+.tab-btn.active{background:#fff;color:var(--primary);box-shadow:0 1px 3px rgb(0 0 0/.1)}
+.notice-box{background:#f0fdf4;border:1px solid #bbf7d0;color:#166534;padding:.85rem 1.25rem;border-radius:var(--radius-sm);font-size:.9rem;margin-bottom:2rem}
+.status-box{display:none;padding:1rem 1.2rem;border-radius:var(--radius-sm);margin-bottom:1.5rem;font-weight:600}
+.status-box.success{display:block;background:#ecfdf5;border:1px solid #86efac;color:#166534}
+.status-box.error{display:block;background:#fef2f2;border:1px solid #fecaca;color:#991b1b}
+h3{font-size:1.2rem;font-weight:700;color:#1e293b;margin-bottom:1.25rem;display:flex;align-items:center;gap:8px}
+h3::before{content:"";display:inline-block;width:4px;height:18px;background:var(--primary);border-radius:2px}
+.form-group{margin-bottom:1.5rem}
+.form-group label{display:block;font-size:.95rem;font-weight:600;color:#334155;margin-bottom:.5rem}
+.form-group input[type=text],.form-group input[type=email],.form-group input[type=tel],.form-group select,.form-group textarea{
+ width:100%;padding:.75rem 1rem;border:1px solid var(--border-color);border-radius:var(--radius-sm);
+ font-size:.95rem;color:var(--text-main);background:#f8fafc;font-family:inherit
+}
+.form-group input:focus,.form-group select:focus,.form-group textarea:focus{outline:none;border-color:var(--primary);background:#fff;box-shadow:0 0 0 3px rgb(37 99 235/.15)}
+.form-group textarea{resize:vertical;min-height:110px}
+.checkbox-group{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;background:#f8fafc;padding:1rem;border-radius:var(--radius-sm);border:1px solid var(--border-color)}
+.checkbox-group label{font-weight:400;font-size:.9rem;color:#475569;display:flex;align-items:center;gap:8px;cursor:pointer;margin:0}
+.checkbox-group input{width:16px;height:16px;accent-color:var(--primary)}
+hr{border:0;border-top:1px dashed var(--border-color);margin:2rem 0}
+.btn-group{display:flex;gap:12px;margin-top:2rem}
+.submit-btn,.export-btn{padding:.9rem 1.5rem;font-size:1rem;font-weight:600;border-radius:var(--radius-sm);cursor:pointer;transition:.2s;display:inline-flex;align-items:center;justify-content:center;gap:8px;font-family:inherit}
+.submit-btn{flex:2;background:var(--primary);color:#fff;border:0;box-shadow:0 4px 6px -1px rgb(0 0 0/.1)}
+.submit-btn:hover:not(:disabled){background:var(--primary-hover);transform:translateY(-1px)}
+.submit-btn:disabled{opacity:.65;cursor:not-allowed}
+.export-btn{flex:1;background:#fff;color:#334155;border:1px solid var(--border-color)}
+.form-section{display:none}
+.form-section.active{display:block}
+footer{text-align:center;padding:2.5rem 1rem 1rem;color:var(--text-muted);font-size:.85rem}
+.print-header{display:none}
+@media print{
+ body{background:#fff}
+ header,nav,footer,.tab-buttons,.btn-group,.notice-box,.status-box,.no-print{display:none!important}
+ .container{width:100%;max-width:100%;margin:0;padding:0}
+ .card{box-shadow:none;padding:0;border:0}
+ .print-header{display:block!important;text-align:center;border-bottom:2px solid #000;padding-bottom:15px;margin-bottom:25px}
+ .print-header h1{margin:0;font-size:18pt;color:#000}
+ .print-header p{margin:5px 0;font-size:10pt;color:#444}
+ input,select,textarea{border:0!important;background:transparent!important;padding:0!important;font-size:11pt!important}
+ textarea{height:auto!important}
+}
+</style>
 </head>
 <body>
 
-    <header>
-        <h1>職場不法侵害與霸凌申訴通報系統</h1>
-        <p>安全、保密、即時的權益維護通報管道</p>
-    </header>
+<header>
+  <h1>職場不法侵害與霸凌申訴通報系統</h1>
+  <p>安全、保密、即時的權益維護通報管道</p>
+</header>
 
-    <div class="container">
-        <div class="card">
-            
-            <!-- 列印/導出 PDF 時才會出現的專業抬頭 -->
-            <div class="print-header">
-                <h1>職場不法侵害與霸凌申訴單（申請人留存憑證）</h1>
-                <p>填寫日期：<span id="printDate"></span></p>
-            </div>
+<div class="container">
+<div class="card">
 
-            <!-- 申訴類別選擇頁籤 -->
-            <div class="tab-buttons">
-                <button class="tab-btn active" onclick="switchForm('侵害表單', this)">1. 不法侵害申訴表</button>
-                <button class="tab-btn" onclick="switchForm('霸凌表單', this)">2. 職場霸凌申訴表</button>
-            </div>
+<div class="print-header">
+  <h1>職場不法侵害與霸凌申訴單（申請人留存憑證）</h1>
+  <p>填寫日期：<span id="printDate"></span></p>
+</div>
 
-            <!-- 保密提示 -->
-            <div class="notice-box no-print">
-                <span>🔒</span>
-                <span>本表單所有內容將嚴格保密。您可在送出前後點擊「匯出 PDF 留存」下載憑證備份。</span>
-            </div>
+<div class="tab-buttons">
+  <button type="button" class="tab-btn active" onclick="switchForm('侵害表單',this)">1. 不法侵害申訴表</button>
+  <button type="button" class="tab-btn" onclick="switchForm('霸凌表單',this)">2. 職場霸凌申訴表</button>
+</div>
 
-            <form action="https://formspree.io/f/xnpnqdrv" method="POST" id="mainForm">
-                
-                <!-- 通用基本資料 -->
-                <h3>申訴人基本資料</h3>
-                <div class="form-group">
-                    <label for="applicantName">申請人姓名 *</label>
-                    <input type="text" id="applicantName" name="申請人姓名" required placeholder="請填寫真實姓名">
-                </div>
-                <div class="form-group">
-                    <label for="department">所屬部門 / 職稱 *</label>
-                    <input type="text" id="department" name="部門與職稱" required placeholder="例：業務部 / 專員">
-                </div>
-                <div class="form-group">
-                    <label for="email">聯絡 Email *</label>
-                    <input type="email" id="email" name="email" required placeholder="例：example@mail.com">
-                </div>
-                <div class="form-group">
-                    <label for="phone">聯絡電話 *</label>
-                    <input type="tel" id="phone" name="聯絡電話" required placeholder="例：0912-345678">
-                </div>
+<div class="notice-box no-print">🔒 本表單內容將依申訴處理程序妥善保密。送出前後皆可使用「匯出 PDF 留存」保存憑證。</div>
 
-                <hr>
+<div id="statusBox" class="status-box" role="alert"></div>
 
-                <!-- 隱藏欄位：用來標示目前送出的是哪一種表單 -->
-                <input type="hidden" id="formType" name="申訴類別" value="不法侵害申訴">
-                <input type="hidden" name="_subject" value="職場不法侵害與霸凌申訴通報">
+<form action="https://formspree.io/f/xnpnqdrv" method="POST" id="mainForm">
 
-                <!-- 格式 A：執行職務遭受不法侵害申訴表 -->
-                <div id="侵害表單" class="form-section active">
-                    <h3>【不法侵害】事件說明</h3>
-                    <div class="form-group">
-                        <label for="infractorName">被申訴人（行為人）姓名 / 職稱 / 關係 *</label>
-                        <input type="text" id="infractorName" name="不法侵害_行為人資訊" placeholder="例如：主管王小明 / 客戶李先生">
-                    </div>
-                    <div class="form-group">
-                        <label>不法侵害類型（可複選）*</label>
-                        <div class="checkbox-group">
-                            <label><input type="checkbox" name="侵害類型" value="肢體暴力"> 肢體暴力</label>
-                            <label><input type="checkbox" name="侵害類型" value="心理暴力"> 心理暴力</label>
-                            <label><input type="checkbox" name="侵害類型" value="言語暴力"> 言語暴力</label>
-                            <label><input type="checkbox" name="侵害類型" value="性騷擾"> 性騷擾</label>
-                            <label><input type="checkbox" name="侵害類型" value="第三方暴力"> 第三方暴力</label>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="eventDate">事件發生時間與地點 *</label>
-                        <input type="text" id="eventDate" name="不法侵害_時間地點" placeholder="例：2026/03/15 下午2點，於會議室A">
-                    </div>
-                    <div class="form-group">
-                        <label for="eventDetail">事件具體經過說明 *</label>
-                        <textarea id="eventDetail" name="不法侵害_詳細經過" placeholder="請詳細描述事發經過、對話內容或相關行為..."></textarea>
-                    </div>
-                    <div class="form-group">
-                        <label for="evidence">是否有相關事證或目擊者？</label>
-                        <textarea id="evidence" name="不法侵害_事證與目擊者" placeholder="例如：監視器畫面、錄音檔、通訊軟體截圖、目擊同事張大明..."></textarea>
-                    </div>
-                </div>
+<h3>申訴人基本資料</h3>
 
-                <!-- 格式 B：職場霸凌申訴表 -->
-                <div id="霸凌表單" class="form-section">
-                    <h3>【職場霸凌】事件說明</h3>
-                    <div class="form-group">
-                        <label for="bullyName">被申訴人（霸凌者）姓名 / 部門 / 職務 *</label>
-                        <input type="text" id="bullyName" name="職場霸凌_行為人資訊" placeholder="例：研發部 陳經理">
-                    </div>
-                    <div class="form-group">
-                        <label>霸凌行為持續時間 *</label>
-                        <select name="霸凌持續時間">
-                            <option value="單一事件">單一事件</option>
-                            <option value="1個月以內">1個月以內</option>
-                            <option value="1至6個月">1至6個月</option>
-                            <option value="6個月以上">6個月以上</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label>主要霸凌行為特徵（可複選）*</label>
-                        <div class="checkbox-group">
-                            <label><input type="checkbox" name="霸凌特徵" value="持續性公開嘲弄/貶低"> 持續性公開嘲弄/貶低</label>
-                            <label><input type="checkbox" name="霸凌特徵" value="刻意排擠與孤立"> 刻意排擠與孤立</label>
-                            <label><input type="checkbox" name="霸凌特徵" value="不合理交派工作/刁難"> 不合理交派工作/刁難</label>
-                            <label><input type="checkbox" name="霸凌特徵" value="剝奪工作權利/不安排工作"> 剝奪工作權利/不安排工作</label>
-                            <label><input type="checkbox" name="霸凌特徵" value="散播不實謠言損害名譽"> 散播不實謠言損害名譽</label>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="bullyImpact">對您工作的實質影響或身心狀況描述 *</label>
-                        <textarea id="bullyImpact" name="職場霸凌_影響與身心狀況" placeholder="例如：焦慮、失眠、需至心理諮商就診，或工作評核受影響..."></textarea>
-                    </div>
-                    <div class="form-group">
-                        <label for="bullyHistory">霸凌行為具體事例（請提供時間序列）*</label>
-                        <textarea id="bullyHistory" name="職場霸凌_具體事例" placeholder="請盡可能列出具體日期與對應事件..."></textarea>
-                    </div>
-                </div>
+<div class="form-group">
+  <label for="applicantName">申請人姓名 *</label>
+  <input type="text" id="applicantName" name="申請人姓名" required placeholder="請填寫真實姓名">
+</div>
 
-                <div class="form-group" style="margin-top: 1.5rem;">
-                    <label for="expectation">申訴訴求與期待處置</label>
-                    <textarea id="expectation" name="申訴訴求" placeholder="例如：希望能調整工作座位、停止被申訴人接觸、開會協調等..."></textarea>
-                </div>
+<div class="form-group">
+  <label for="department">所屬部門 / 職稱 *</label>
+  <input type="text" id="department" name="部門與職稱" required placeholder="例：業務部 / 專員">
+</div>
 
-                <!-- 按鈕區：包含「導出/列印」與「送出」 -->
-                <div class="btn-group">
-                    <button type="button" class="export-btn" onclick="exportPDF()">
-                        📥 匯出 PDF 留存
-                    </button>
-                    <button type="submit" class="submit-btn">
-                        確認送出申訴單
-                    </button>
-                </div>
-            </form>
-        </div>
-    </div>
+<div class="form-group">
+  <label for="email">聯絡 Email *</label>
+  <input type="email" id="email" name="email" required placeholder="例：example@mail.com">
+</div>
 
-    <footer>
-        <p>&copy; 2026 職場不法侵害與霸凌申訴系統. 保留所有權利。</p>
-    </footer>
+<div class="form-group">
+  <label for="phone">聯絡電話 *</label>
+  <input type="tel" id="phone" name="聯絡電話" required placeholder="例：0912-345678">
+</div>
 
-    <script>
-        // 切換「不法侵害」與「職場霸凌」表單頁籤
-        function switchForm(formId, btnElement) {
-            const buttons = document.querySelectorAll('.tab-btn');
-            buttons.forEach(btn => btn.classList.remove('active'));
-            btnElement.classList.add('active');
+<hr>
 
-            const sections = document.querySelectorAll('.form-section');
-            sections.forEach(section => section.classList.remove('active'));
-            document.getElementById(formId).classList.add('active');
+<input type="hidden" id="formType" name="申訴類別" value="不法侵害申訴">
+<input type="hidden" name="_subject" value="職場不法侵害與霸凌申訴通報">
 
-            if (formId === '侵害表單') {
-                document.getElementById('formType').value = '不法侵害申訴';
-            } else {
-                document.getElementById('formType').value = '職場霸凌申訴';
-            }
-        }
+<!-- 不法侵害 -->
+<div id="侵害表單" class="form-section active">
+<h3>【不法侵害】事件說明</h3>
 
-        // 防止使用者連續點擊造成重複送出
-        document.getElementById('mainForm').addEventListener('submit', function () {
-            const submitButton = this.querySelector('button[type="submit"]');
-            if (submitButton) {
-                submitButton.disabled = true;
-                submitButton.innerText = '送出中，請稍候…';
-            }
-        });
+<div class="form-group">
+<label for="infractorName">被申訴人（行為人）姓名 / 職稱 / 關係 *</label>
+<input type="text" id="infractorName" name="不法侵害_行為人資訊" required placeholder="例如：主管王小明 / 客戶李先生">
+</div>
 
-        // 導出 / 列印 PDF 功能
-        function exportPDF() {
-            const today = new Date();
-            const dateStr = today.getFullYear() + '年' + (today.getMonth() + 1) + '月' + today.getDate() + '日';
-            document.getElementById('printDate').innerText = dateStr;
+<div class="form-group">
+<label>不法侵害類型（可複選）*</label>
+<div class="checkbox-group">
+<label><input type="checkbox" name="侵害類型" value="肢體暴力">肢體暴力</label>
+<label><input type="checkbox" name="侵害類型" value="心理暴力">心理暴力</label>
+<label><input type="checkbox" name="侵害類型" value="言語暴力">言語暴力</label>
+<label><input type="checkbox" name="侵害類型" value="性騷擾">性騷擾</label>
+<label><input type="checkbox" name="侵害類型" value="第三方暴力">第三方暴力</label>
+</div>
+</div>
 
-            window.print();
-        }
-    </script>
+<div class="form-group">
+<label for="eventDate">事件發生時間與地點 *</label>
+<input type="text" id="eventDate" name="不法侵害_時間地點" required placeholder="例：2026/03/15 下午2點，於會議室A">
+</div>
+
+<div class="form-group">
+<label for="eventDetail">事件具體經過說明 *</label>
+<textarea id="eventDetail" name="不法侵害_詳細經過" required placeholder="請詳細描述事發經過、對話內容或相關行為..."></textarea>
+</div>
+
+<div class="form-group">
+<label for="evidence">是否有相關事證或目擊者？</label>
+<textarea id="evidence" name="不法侵害_事證與目擊者" placeholder="例如：監視器畫面、錄音檔、通訊軟體截圖、目擊同事張大明..."></textarea>
+</div>
+</div>
+
+<!-- 職場霸凌 -->
+<div id="霸凌表單" class="form-section">
+<h3>【職場霸凌】事件說明</h3>
+
+<div class="form-group">
+<label for="bullyName">被申訴人（霸凌者）姓名 / 部門 / 職務 *</label>
+<input type="text" id="bullyName" name="職場霸凌_行為人資訊" required placeholder="例：研發部 陳經理">
+</div>
+
+<div class="form-group">
+<label for="bullyDuration">霸凌行為持續時間 *</label>
+<select id="bullyDuration" name="霸凌持續時間" required>
+<option value="">請選擇</option>
+<option value="單一事件">單一事件</option>
+<option value="1個月以內">1個月以內</option>
+<option value="1至6個月">1至6個月</option>
+<option value="6個月以上">6個月以上</option>
+</select>
+</div>
+
+<div class="form-group">
+<label>主要霸凌行為特徵（可複選）*</label>
+<div class="checkbox-group">
+<label><input type="checkbox" name="霸凌特徵" value="持續性公開嘲弄/貶低">持續性公開嘲弄/貶低</label>
+<label><input type="checkbox" name="霸凌特徵" value="刻意排擠與孤立">刻意排擠與孤立</label>
+<label><input type="checkbox" name="霸凌特徵" value="不合理交派工作/刁難">不合理交派工作/刁難</label>
+<label><input type="checkbox" name="霸凌特徵" value="剝奪工作權利/不安排工作">剝奪工作權利/不安排工作</label>
+<label><input type="checkbox" name="霸凌特徵" value="散播不實謠言損害名譽">散播不實謠言損害名譽</label>
+</div>
+</div>
+
+<div class="form-group">
+<label for="bullyImpact">對您工作的實質影響或身心狀況描述 *</label>
+<textarea id="bullyImpact" name="職場霸凌_影響與身心狀況" required placeholder="例如：工作受到何種影響、生活受到何種影響等..."></textarea>
+</div>
+
+<div class="form-group">
+<label for="bullyHistory">霸凌行為具體事例（請提供時間序列）*</label>
+<textarea id="bullyHistory" name="職場霸凌_具體事例" required placeholder="請盡可能列出具體日期與對應事件..."></textarea>
+</div>
+</div>
+
+<div class="form-group" style="margin-top:1.5rem">
+<label for="expectation">申訴訴求與期待處置</label>
+<textarea id="expectation" name="申訴訴求" placeholder="例如：希望能調整工作座位、停止被申訴人接觸、開會協調等..."></textarea>
+</div>
+
+<div class="btn-group">
+<button type="button" class="export-btn" onclick="exportPDF()">📥 匯出 PDF 留存</button>
+<button type="submit" class="submit-btn" id="submitBtn">確認送出申訴單</button>
+</div>
+
+</form>
+</div>
+</div>
+
+<footer>
+<p>&copy; 2026 職場不法侵害與霸凌申訴系統. 保留所有權利。</p>
+</footer>
+
+<script>
+const form = document.getElementById("mainForm");
+const statusBox = document.getElementById("statusBox");
+const submitBtn = document.getElementById("submitBtn");
+
+const sections = {
+  侵害表單: document.getElementById("侵害表單"),
+  霸凌表單: document.getElementById("霸凌表單")
+};
+
+function setSectionEnabled(section, enabled) {
+  section.querySelectorAll("input, select, textarea").forEach(el => {
+    el.disabled = !enabled;
+  });
+}
+
+function switchForm(formId, btnElement) {
+  document.querySelectorAll(".tab-btn").forEach(btn => btn.classList.remove("active"));
+  btnElement.classList.add("active");
+
+  document.querySelectorAll(".form-section").forEach(section => section.classList.remove("active"));
+  document.getElementById(formId).classList.add("active");
+
+  document.getElementById("formType").value =
+    formId === "侵害表單" ? "不法侵害申訴" : "職場霸凌申訴";
+
+  setSectionEnabled(sections.侵害表單, formId === "侵害表單");
+  setSectionEnabled(sections.霸凌表單, formId === "霸凌表單");
+
+  statusBox.className = "status-box";
+  statusBox.textContent = "";
+}
+
+/* 初始化：只啟用目前顯示的表單 */
+setSectionEnabled(sections.侵害表單, true);
+setSectionEnabled(sections.霸凌表單, false);
+
+form.addEventListener("submit", async function(event) {
+  event.preventDefault();
+
+  statusBox.className = "status-box";
+  statusBox.textContent = "";
+
+  if (!form.reportValidity()) {
+    return;
+  }
+
+  submitBtn.disabled = true;
+  submitBtn.textContent = "送出中，請稍候…";
+
+  try {
+    const response = await fetch(form.action, {
+      method: "POST",
+      body: new FormData(form),
+      headers: {
+        "Accept": "application/json"
+      }
+    });
+
+    let result = {};
+    try {
+      result = await response.json();
+    } catch (e) {}
+
+    if (response.ok) {
+      statusBox.className = "status-box success";
+      statusBox.textContent =
+        "✅ 申訴單已成功送出！資料已傳送至 Formspree，請確認承辦信箱是否收到通知。";
+
+      /* 保留基本資料與申訴類別，清除事件內容，避免重複送出 */
+      const currentType = document.getElementById("formType").value;
+      form.reset();
+      document.getElementById("formType").value = currentType;
+
+      if (currentType === "職場霸凌申訴") {
+        document.getElementById("formType").value = "職場霸凌申訴";
+      } else {
+        document.getElementById("formType").value = "不法侵害申訴";
+      }
+
+    } else {
+      let message = "❌ 送出失敗。";
+      if (result && Array.isArray(result.errors) && result.errors.length) {
+        message += " " + result.errors.map(e => e.message || "欄位資料有誤").join("；");
+      } else {
+        message += "請確認 Formspree 設定、網路連線，或稍後再試。";
+      }
+      statusBox.className = "status-box error";
+      statusBox.textContent = message;
+    }
+  } catch (error) {
+    statusBox.className = "status-box error";
+    statusBox.textContent =
+      "❌ 無法連線至 Formspree。請確認網路連線後再試一次。";
+  } finally {
+    submitBtn.disabled = false;
+    submitBtn.textContent = "確認送出申訴單";
+  }
+});
+
+function exportPDF() {
+  const today = new Date();
+  const dateStr =
+    today.getFullYear() + "年" +
+    (today.getMonth() + 1) + "月" +
+    today.getDate() + "日";
+  document.getElementById("printDate").innerText = dateStr;
+  window.print();
+}
+</script>
+
 </body>
 </html>
